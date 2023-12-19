@@ -3,7 +3,7 @@ import './FooterComponent.css'
 
 const FooterComponent = () => {
     return (
-        <div className='footer'>© Kiosco Ilolay 2023. Todos los derechos reservados.</div>
+        <div className='footer'>© E-commerce 2023. Todos los derechos reservados.</div>
     )
 }
 

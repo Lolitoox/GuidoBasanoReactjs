@@ -1,16 +1,14 @@
-import NavbarComponent from './components/NavbarComponent/NavbarComponent';
-import ItemListContainer from './components/ItemDetailComponent/ItemDetailComponent';
-import FooterComponent from './components/FooterComponent/FooterComponent';
+import MainRouter from './router/MainRouter';
 import './App.css';
 
-function App() {
+const App = () => {
     return (
         <div>
-            <NavbarComponent />
-            <ItemListContainer greeting="Bienvenidos a mi tienda" />
-            <FooterComponent />
+
+            <MainRouter />
+
         </div>
     );
-}
+};
 
 export default App;
