@@ -1,21 +1,33 @@
 import { useEffect, useState } from "react";
-import { getProductsByCategory } from "../services";
+import { getFirestore, collection, query, where, getDocs } from "firebase/firestore";
 
-
-
-export const useGetProductsByCategory = (id) => {
+export const useGetProductsByCategory = (categoryId) => {
     const [productsData, setProductsData] = useState([]);
 
-
     useEffect(() => {
-        getProductsByCategory(id)
-            .then((response) => {
-                setProductsData(response.data)
-            })
-            .catch((error) => {
-                console.log(error);
-            });
-    }, [id]);
+        const fetchProducts = async () => {
+            try {
+                const db = getFirestore();
+                const productsCollection = collection(db, "products");
 
-    return { productsData }
-}
+                const q = query(productsCollection, where("category", "==", categoryId));
+
+                const productsSnapshot = await getDocs(q);
+
+                const productsData = productsSnapshot.docs.map((doc) => ({
+                    id: doc.id,
+                    ...doc.data(),
+                }));
+
+                setProductsData(productsData);
+            } catch (error) {
+                console.error("Error al obtener productos por categoría:", error);
+            }
+        };
+
+        fetchProducts();
+    }, [categoryId]);
+
+    return { productsData };
+};
+

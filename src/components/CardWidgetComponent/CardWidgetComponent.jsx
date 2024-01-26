@@ -1,10 +1,24 @@
-import React from 'react'
-import './CardWidgetComponent.css'
+import React from 'react';
+import { useCart } from '../context/cartContext';
+import { Link } from 'react-router-dom';
+import Badge from 'react-bootstrap/Badge';
+import { BsBag } from 'react-icons/bs';
 
 const CartWidgetComponent = () => {
-    return (
-        <div className='cartWidget'>🛒0</div>
-    )
-}
+    const { totalQuantity } = useCart();
 
-export default CartWidgetComponent
+    return (
+        <Link to="/cart" className="cart-widgets">
+            <div className="cart-widgets__shopping-bag">
+                <BsBag size={30} />
+                {totalQuantity > 0 && (
+                    <Badge bg="danger" className="cart-widgets__items-counter">
+                        {totalQuantity}
+                    </Badge>
+                )}
+            </div>
+        </Link>
+    );
+};
+
+export default CartWidgetComponent;
