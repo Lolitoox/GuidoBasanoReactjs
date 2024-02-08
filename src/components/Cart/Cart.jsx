@@ -1,7 +1,7 @@
 import React from 'react';
 import { useCart } from '../context/cartContext';
 import Button from 'react-bootstrap/Button';
-import { Link } from 'react-router-dom'; // Importar Link desde react-router-dom
+import { Link } from 'react-router-dom';
 
 const Cart = () => {
     const { items, totalPrice, totalQuantity, removeFromCart, clearCart } = useCart();
@@ -27,7 +27,7 @@ const Cart = () => {
                                     <p>{item.title}</p>
                                     <p>Cantidad: {item.quantity}</p>
                                     <p>Precio: {item.price * item.quantity}</p>
-                                    {/* Modificar el botón para quitar solo una cantidad del producto */}
+                                    {/* Modificación en el botón para quitar solo una cantidad del producto */}
                                     <Button variant="danger" onClick={() => handleRemoveFromCart(item.id)}>Quitar del Carrito</Button>
                                 </div>
                             </li>
